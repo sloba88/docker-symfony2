@@ -1,0 +1,57 @@
+symfony:
+  build: symfony/
+  links:
+    - redis
+    - db
+    - elasticsearch
+  volumes:
+    - ./symfony/code:/var/www
+  volumes_from:
+    - data
+
+data:
+  image: busybox
+  volumes:
+    - /var/www/app/cache
+    - /var/www/app/logs
+
+nginx:
+  build: nginx/
+  ports:
+    - 8080:80
+  links:
+    - fpm
+  volumes_from:
+    - symfony
+  environment:
+    <APP_SERVER_NAME>: dev-machine
+
+db:
+  image: mysql
+  ports:
+    - 3306:3306
+  environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: symfony
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+
+fpm:
+  build: php-fpm/
+  links:
+    - redis
+    - db
+    - elasticsearch
+  volumes_from:
+    - symfony
+  environment:
+    APP_SERVER_NAME: dev-machine
+
+php5.5-fpm:
+  build: php5.5-fpm/
+
+redis:
+  image: redis:2.8.13
+
+elasticsearch:
+  image: elasticsearch

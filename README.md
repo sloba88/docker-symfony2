@@ -1,18 +1,21 @@
 # Docker Symfony2 setup
 
 This setup is made using parts of some other solutions and also adding my own.
-[denderello/symfony-docker-example](https://github.com/denderello/symfony-docker-example)
-[advancingu/SfDocker](https://github.com/advancingu/SfDocker)
+
+* [denderello/symfony-docker-example](https://github.com/denderello/symfony-docker-example)
+* [advancingu/SfDocker](https://github.com/advancingu/SfDocker)
+
 
 Currently it uses
 
-php-fpm
-nginx
-redis
-mysql
-elasticsearch
+* php-fpm 
+* nginx
+* redis
+* mysql
+* elasticsearch
 
 TODO:
+
 nodejs
 
 

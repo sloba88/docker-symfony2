@@ -24,7 +24,7 @@ nginx:
   volumes_from:
     - symfony
   environment:
-    <APP_SERVER_NAME>: dev-machine
+    APP_SERVER_NAME: dev-machine
 
 db:
   image: mysql

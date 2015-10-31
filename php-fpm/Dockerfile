@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y \
 ADD start.sh /start.sh
 ADD symfony_environment.sh /etc/profile.d/symfony_environment.sh
 
+RUN rm /etc/php5/fpm/pool.d/www.conf
+ADD app.pool.conf /etc/php5/fpm/pool.d/
+
 EXPOSE 9000
 
 WORKDIR /var/www

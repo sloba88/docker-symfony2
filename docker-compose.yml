@@ -55,3 +55,20 @@ redis:
 
 elasticsearch:
   image: elasticsearch
+
+nodejs:
+  build: nodejs/
+  links:
+    - redis
+    - mongo
+  volumes:
+    - ./symfony/code:/var/www
+  volumes_from:
+    - symfony
+  ports:
+    - 3000
+
+mongo:
+  image: mongo:3.0.4
+  ports:
+    - "27017:27017"

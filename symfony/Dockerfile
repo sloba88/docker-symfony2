@@ -29,7 +29,7 @@ ADD entrypoint.sh /entrypoint.sh
 ADD ./code /var/www
 ADD symfony_environment.sh /etc/profile.d/symfony_environment.sh
 
-WORKDIR /var/www/omega
+WORKDIR /var/www/symfony
 
 EXPOSE 5001
 

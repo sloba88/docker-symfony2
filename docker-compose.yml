@@ -13,8 +13,8 @@ symfony:
 data:
   image: busybox
   volumes:
-    - /var/www/omega/app/cache
-    - /var/www/omega/app/logs
+    - /var/www/symfony/app/cache
+    - /var/www/symfony/app/logs
 
 nginx:
   build: nginx/

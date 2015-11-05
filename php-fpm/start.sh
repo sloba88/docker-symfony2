@@ -8,7 +8,7 @@
 
 /bin/bash -l -c "php app/console redis:flushall --no-interaction"
 
-chown -R www-data:www-data /var/www/omega/app/cache
-chown -R www-data:www-data /var/www/omega/app/logs
+chown -R www-data:www-data /var/www/symfony/app/cache
+chown -R www-data:www-data /var/www/symfony/app/logs
 
 exec /usr/sbin/php5-fpm --nodaemonize

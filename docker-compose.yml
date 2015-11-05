@@ -1,9 +1,10 @@
 symfony:
   build: symfony/
   links:
-    - redis
+#    - redis
     - db
     - elasticsearch
+#    - nodejs
   volumes:
     - ./symfony/code:/var/www
   volumes_from:
@@ -12,19 +13,19 @@ symfony:
 data:
   image: busybox
   volumes:
-    - /var/www/app/cache
-    - /var/www/app/logs
+    - /var/www/omega/app/cache
+    - /var/www/omega/app/logs
 
 nginx:
   build: nginx/
   ports:
-    - 8080:80
+    - 80:80
   links:
     - fpm
   volumes_from:
     - symfony
   environment:
-    APP_SERVER_NAME: dev-machine
+    <APP_SERVER_NAME>: liveapps2.local
 
 db:
   image: mysql
@@ -32,43 +33,38 @@ db:
     - 3306:3306
   environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: symfony
+      MYSQL_DATABASE: livedb
       MYSQL_USER: root
       MYSQL_PASSWORD: root
 
 fpm:
   build: php-fpm/
   links:
-    - redis
+#    - redis
     - db
     - elasticsearch
   volumes_from:
     - symfony
   environment:
-    APP_SERVER_NAME: dev-machine
+    APP_SERVER_NAME: liveapps2.local
 
 php5.5-fpm:
   build: php5.5-fpm/
 
-redis:
-  image: redis:2.8.13
+#redis:
+#  image: redis:2.8.13
 
 elasticsearch:
   image: elasticsearch
 
-nodejs:
-  build: nodejs/
-  links:
-    - redis
-    - mongo
-  volumes:
-    - ./symfony/code:/var/www
-  volumes_from:
-    - symfony
-  ports:
-    - 3000
+#nodejs:
+#  build: nodejs/
+#  volumes:
+#    - ./symfony/code:/var/www
+#  volumes_from:
+#    - symfony
 
-mongo:
-  image: mongo:3.0.4
-  ports:
-    - "27017:27017"
+#mongo:
+#  image: mongo:3.0.4
+#  ports:
+#    - "27017:27017"

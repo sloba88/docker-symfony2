@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     php5-common \
     php5-gd \
     php5-imagick \
-    php5-mcrypt
+    php5-mcrypt \
+    git
 
 
 RUN php5enmod mcrypt

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-rm -rf /var/www/app/cache/*
+rm -rf /var/www/omega/app/cache/*
 /bin/bash -l -c "$*"
 
-chown -R www-data:www-data /var/www/app/cache
-chown -R www-data:www-data /var/www/app/logs
+chown -R www-data:www-data /var/www/omega/app/cache
+chown -R www-data:www-data /var/www/omega/app/logs
